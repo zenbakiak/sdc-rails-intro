@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  media_file: MyString
+  votes_count: 1
+  comments_count: 1
+  author_id: 1
+
+two:
+  title: MyString
+  media_file: MyString
+  votes_count: 1
+  comments_count: 1
+  author_id: 1

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<% @gags.each do |gag| %>
+  <article class="item" id="gag-<%= gag.id %>">
+    <h2><%= gag.title %></h2>
+    <div class="gag-wrapper">
+      <%= image_tag gag.media_file.url, width: '100%' %>
+    </div>
+    <div class="details">
+      <%= time_ago_in_words gag.created_at %>
+    </div>
+    <div class="scores">
+      <%= link_to gag_path(gag) do %>
+        <span class="votes-count"><%= gag.votes_count %></span> votes
+      <% end -%> ·
+      <%= link_to gag_path(gag) do %>
+        <span class="comments-count"><%= gag.comments_count %></span> comments
+      <% end -%>
+    </div>
+
+    <%= link_to vote_gag_path(gag, format: :js),
+      class: "vote-button btn btn-large btn-default #{'active' if gag.votes.exists?(user_id: current_user.try(:id))}",
+      method: :post,
+      remote: :true do %>
+      <i class="fa fa-chevron-up"></i>
+    <% end -%>
+
+    <%= link_to gag_path(gag), class: "btn btn-large btn-default" do %>
+      <i class="fa fa-comment"></i>
+    <% end -%>
+  </article>
+<% end %>

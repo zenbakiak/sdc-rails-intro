@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<article class="item" id="gag-<%= @gag.id %>">
+  <h2><%= @gag.title %></h2>
+  <div class="gag-wrapper">
+    <%= image_tag @gag.media_file.url, width: '100%' %>
+  </div>
+  <div class="details">
+    <%= time_ago_in_words @gag.created_at %>
+  </div>
+  <div class="scores">
+    <span class="votes-count"><%= @gag.votes_count %></span> votes ·
+    <span class="comments-count"><%= @gag.comments_count %></span> comments
+  </div>
+
+  <%= link_to vote_gag_path(@gag, format: :js),
+    class: "vote-button btn btn-large btn-default #{'active' if @gag.votes.exists?(user_id: current_user.try(:id))}",
+    method: :post,
+    remote: :true do %>
+    <i class="fa fa-chevron-up"></i>
+  <% end -%>
+
+</article>
+
+<ul class="comments">
+  <%= render partial: "comments/comment", collection: @gag.comments %>
+</ul>
+
+<% if user_signed_in? %>
+  <%= form_for([@gag, Comment.new], format: :js, remote: true) do |f| %>
+    <div class="field">
+      Want to say something? <br>
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <div class="actions">
+      <button type="submit" class="btn btn-large btn-black">Post comment</button>
+    </div>
+  <% end %>
+<% end -%>

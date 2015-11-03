@@ -1,0 +1,3 @@
+var gag = $("#gag-<%= @gag.id %>")
+gag.find(".votes-count").html("<%= @gag.votes_count %>");
+gag.find(".vote-button").toggleClass("active");

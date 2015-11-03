@@ -1,0 +1,2 @@
+module GagsHelper
+end

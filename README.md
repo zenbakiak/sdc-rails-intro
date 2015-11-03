@@ -6,4 +6,4 @@
 
 [Intro Slides](https://docs.google.com/presentation/d/14vXfgRytpmrTAKUAcLj2uDwMuvAvBUz1ymSTv-sr0SM/edit?usp=sharing)
 
-* [Ruby]()
+#### [Ruby](https://github.com/zenbakiak/sdc-rails-intro/tree/master/ruby)

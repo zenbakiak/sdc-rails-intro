@@ -201,3 +201,78 @@ end
 @rapper = Mc.new('mcdinero')
 @rapper.freestyle
 ```
+
+## The mad wife problem
+```
+# A Wife calls her programmer husband:
+# Honey, please go to the market and buy milk, if they have eggs, bring six
+
+class Husband
+  attr_accessor :nickname, :place, :products
+
+  def initialize(nickname)
+    self.nickname = nickname
+    self.products = []
+  end
+
+  def goto(place)
+    self.place = place
+  end
+
+  def buy(product, quantity)
+    self.products << {product: product, quantity: quantity}
+  end
+end
+
+class Market
+  def have_eggs?
+    true
+  end
+end
+
+@honey = Husband.new('Honey')
+@walmart = Market.new
+@honey.goto(@walmart)
+@honey.buy('Milk', 6) if @honey.place.have_eggs?
+p @honey.products
+
+```
+
+## The mad wife problem II
+
+```
+# A Wife calls her programmer husband:
+# Honey, While you are out buy some milk
+
+class Husband
+  attr_accessor :nickname, :products
+
+  def initialize(nickname)
+    self.nickname = nickname
+    self.products = []
+  end
+
+  def home?
+    false
+  end
+
+  def buy(product, quantity)
+    self.products << {product: product, quantity: quantity}
+    puts "your cart have: #{self.products}"
+  end
+end
+
+@honey = Husband.new('Honey')
+
+begin
+  @honey.buy('milk', 1)
+end while !@honey.home?
+
+#begin
+#  @honey.buy('milk', 1)
+#end unless @honey.home?
+
+```
+
+
+
